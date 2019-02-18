@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div class="row">
+        <div id="articles" style="width:1400px; height:800px">
+        </div>
+    </div>
+    <p>Test text.</p>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    
+    <!-- The script below is copied and lightly tweaked. I have a vague idea of how it works but jquery definitely isn't a strong point of mine. -->
+    <!-- The code below just touches an api end point, grabs the data and plots it on a bar graph. easy peasy. -->
+    <script type="text/javascript">
+        $(document).ready(function(){
+            var api_endpoint = "/api/chart/data"
+            var articleData = articleLabels = []
+
+            $.ajax({
+                method: "GET",
+                url: api_endpoint,
+                success: function(data){
+                    articleLabels = data.article_labels
+                    articleData = data.article_data
+                    articleChart()
+                },
+                error: function(error_data){
+                    console.log("error")
+                }
+            })
+
+            function articleChart(){
+                var data = [{
+                    x: articleData,
+                    y: articleLabels,
+                    type: 'bar',
+                    orientation: 'h',
+                    marker: {
+                        color: '#23b7e5'
+                    },
+                }];
+                var layout = {
+                    title: "Number of Articles per Company",
+                    margin: {l:200,},
+                };
+                Plotly.newPlot('articles', data, layout)
+            };
+
+
+        })
+    </script>
+</body>
+</html>

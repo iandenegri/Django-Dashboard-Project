@@ -9,17 +9,28 @@
 </head>
 <body>
     <div class="jumbotron">
-        <h1>Welcome to your Dashboard</h1>
-        {% if deny_permission %}
-            <p>
-                Your next news gathering time is allowed in {{ next_scrape }} minutes.
-            </p>
-        {% else %}
-            <form method="POST" action="{% url 'scrape' %}">
-                {% csrf_token %}
-                <button type="submit" class="btn btn-primary">Get my news</button>
-            </form>
-        {% endif %}
+        <div class="container">
+            <h1>Welcome to your Dashboard</h1>
+            {% if deny_permission %}
+                <p>
+                    Your next news gathering time is allowed in {{ next_scrape }} minutes.
+                </p>
+            {% else %}
+                <form method="POST" action="{% url 'scrape' %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-primary">Get my news</button>
+                </form>
+            {% endif %}
+        </div>
+        <div class="container">
+            <h3><a href="/dash/">Check out your stocks.</a></h3>
+        </div>
+        <div class="container">
+            <h3><a href="/api/chart/data">Check your api end point.</a></h3>
+        </div>
+        <div class="container">
+            <h3><a href="/companies/">Check company articles.</a></h3>
+        </div>
     </div>
 
     <div class="container">

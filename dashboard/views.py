@@ -2,6 +2,7 @@ import math
 from datetime import timedelta, timezone, datetime
 
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 
 from notepad.forms import NoteModelForm
@@ -10,6 +11,7 @@ from notepad.models import Note
 from news.models import Headline, UserProfile
 
 
+@login_required
 def home(request):
     user_profile = UserProfile.objects.filter(user=request.user).first()
     now = datetime.now(timezone.utc)

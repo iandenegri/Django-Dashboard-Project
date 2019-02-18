@@ -28,3 +28,4 @@ Most of the work on this project went towards developing views and utilities for
 * There should also be a sign up page in case I want users to be able to use this too...
 * A nicer UI.
 * Maybe a friends list so that users can add each other and see each other's notes. This could give the notes feature real use. Right now it's kind of just a solution for an issue that existed like 10 years ago when applications weren't linked together and you couldn't access notes and documents from other devices.
+* A gitignore file and cleaning up the repo.
